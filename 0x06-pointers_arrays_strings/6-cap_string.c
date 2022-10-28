@@ -1,25 +1,36 @@
 #include "main.h"
-#include <stdio.h>
-
 /**
- * *cap_string - this is awesome
- * @s: pointer to char params
- *
- * Return: *s
+ *cap_string - This is the main function
+ *@s: This is the string to be entered
+ *Return: void
  */
-
 char *cap_string(char *s)
 {
-	int i, j;
-	char delimeters[] = " \t\n,;.!?\"(){}";
+	int index = 0;
 
-	for (i = 0; s[i] != '\0'; i++)
+	while (s[index])
 	{
-		if (s[0] >= 97 && s[0] <= 122)
-			s[0] = s[0] - 32;
-				for (j = 0; delimeters[j] != '\0'; j++)
-					if (s[i] == delimeters[j] && s[i + 1] >= 97 && s[i + 1] <= 122)
-						s[i + 1] = s[i + 1] - 32;
+		while (!(s[index] >= 'a' && s[index] <= 'z'))
+			index++;
+
+		if (s[index - 1] == ' ' ||
+		    s[index - 1] == '\t' ||
+		    s[index - 1] == '\n' ||
+		    s[index - 1] == ',' ||
+		    s[index - 1] == ';' ||
+		    s[index - 1] == '.' ||
+		    s[index - 1] == '!' ||
+		    s[index - 1] == '?' ||
+		    s[index - 1] == '"' ||
+		    s[index - 1] == '(' ||
+		    s[index - 1] == ')' ||
+		    s[index - 1] == '{' ||
+		    s[index - 1] == '}' ||
+		    index == 0)
+			s[index] -= 32;
+
+		index++;
 	}
+
 	return (s);
 }
